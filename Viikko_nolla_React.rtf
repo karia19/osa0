@@ -1,0 +1,99 @@
+{\rtf1\ansi\ansicpg1252\cocoartf1404\cocoasubrtf470
+{\fonttbl\f0\fswiss\fcharset0 Helvetica;}
+{\colortbl;\red255\green255\blue255;}
+\paperw11900\paperh16840\margl1440\margr1440\vieww10800\viewh8400\viewkind0
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+
+\f0\fs24 \cf0 0.3 Muistiinpanojen sivut\
+\
+k\'e4ytt\'e4j\'e4 -> selain:\
+note left of  selain\
+osoite ..herokuapp.com/notes\
+end note \
+selain -> palvelin: GET ..herokuapp/notes\
+palvelin -> selain : notes document res 200\
+selain -> palvelin : GET ../main.css\
+palvelin -> selain : main.css res 200\
+selain -> palvelin : GET ../main.js\
+palvelin -> selain : main.js res 200\
+selain -> palvelin : GET ../data.json \
+palvelin -> selain : data.json res 200\
+\
+note right of k\'e4ytt\'e4j\'e4\
+  selain n\'e4ytt\'e4\'e4 palvelimelta ladatun tiedostot jossa \
+  data.json tiedosto on k\'e4sitelty main.js:ss\'e4 n\'e4ytett\'e4v\'e4ksi\
+  \'92li\'92 muodossa\
+end note over \
+\
+\
+\
+\pard\tx566\tx1133\tx1700\tx2267\tx2834\tx3401\tx3968\tx4535\tx5102\tx5669\tx6236\tx6803\pardirnatural\partightenfactor0
+\cf0 0.4 Uusi muistiinpano\
+\
+k\'e4ytt\'e4j\'e4 -> selain:\
+note left of  selain\
+osoite ..herokuapp.com/notes\
+k\'e4ytt\'e4j\'e4 kirjoitta lomakeeseen muistiinpanon ja \
+painaa nappia talleta\
+end note \
+selain -> palvelin: post lomakkeen tiedot\
+note left of palvelin \
+  l\'e4hetet\'e4\'e4n osoitesseen new_note lomakeen tiedot\
+  joka palautaa status koodin 302. T\'e4m\'e4 \
+  tekee sen ett\'e4 selain lataa uudelleen tiedot\
+end note over \
+palvelin -> selain: status 200 main.css\
+palvelin -> selain : main.js status 200\
+palvelin -> selain : notes status 200\
+palvelin -> selain : data.json\
+note right of selain\
+ serverill\'e4 data.json tiedosto li\'e4t\'e4\'e4n uusi muistiinpano\
+end note over \
+note right of k\'e4ytt\'e4j\'e4\
+  selain n\'e4ytt\'e4\'e4 palvelimelta uudelleen ladatut tiedostot\
+end note over \
+\
+0.5 Single Page App\
+\
+k\'e4ytt\'e4j\'e4 -> selain:\
+note left of  selain\
+k\'e4ytt\'e4j\'e4 kitjoittaa osoite ..herokuapp.com/spa\
+end note \
+selain -> palvelin: request method GET heokuapp.com/spa\
+palvelin -> selain: spa document status 200\
+selain -> palvelin : GET spa.js\
+palvelin -> selain : spa.js status 200\
+selain -> palvelin : GET main.css\
+palvelin -> selain : main.css status 200\
+selain -> palvelin : GET data.json\
+palvelin -> selain : data.json\
+\
+note right of k\'e4ytt\'e4j\'e4\
+  selain n\'e4ytt\'e4\'e4 palvelimelta hatetut tiedot johon\
+  on yhdistetty data.json tiedosto\
+end note over \
+\
+\
+0.6  Uusi muistiinpano spa:ssa\
+\
+k\'e4ytt\'e4j\'e4 -> selain:\
+note left of  selain\
+osoite ..herokuapp.com/spa\
+k\'e4ytt\'e4j\'e4 kirjoitta lomakeeseen muistiinpanon ja \
+painaa nappia talleta\
+end note \
+selain -> palvelin: post lomakkeen tiedot /new_note_spa JSON-muodossa\
+note left of palvelin \
+  palvelin vastaa status coodilla 201 \
+  selain pysyy samalla sivulla e.preventDefault()\
+  est\'e4\'e4 sivun uudelleen latauksen\
+end note over \
+palvelin -> selain : palauttaa p\'e4ivitetyn data.json tiedoston res 200\
+note right of selain\
+ serverill\'e4 data.json tiedosto li\'e4t\'e4\'e4n uusi muistiinpano \
+end note over \
+note right of k\'e4ytt\'e4j\'e4\
+  selain n\'e4ytt\'e4\'e4 palvelimelta uudelleen ladatun tiedoston\
+  data.json \
+end note over \
+}
